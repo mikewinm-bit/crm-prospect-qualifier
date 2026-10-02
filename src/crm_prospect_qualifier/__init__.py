@@ -1,5 +1,10 @@
 from .models import CreditCheckStatus, Prospect, Province, QualificationResult
-from .qualification import MIN_ANNUAL_TURNOVER, MIN_YEARS_IN_OPERATION, qualify_prospect
+from .qualification import (
+    MIN_ANNUAL_TURNOVER,
+    MIN_YEARS_IN_OPERATION,
+    qualify_prospect,
+    qualify_prospects,
+)
 
 __all__ = [
     "MIN_ANNUAL_TURNOVER",
@@ -9,4 +14,5 @@ __all__ = [
     "Province",
     "QualificationResult",
     "qualify_prospect",
+    "qualify_prospects",
 ]

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from decimal import Decimal
 
 from .models import CreditCheckStatus, Prospect, QualificationResult
@@ -29,3 +30,17 @@ def qualify_prospect(prospect: Prospect) -> QualificationResult:
         )
 
     return QualificationResult(qualified=not reasons, reasons=reasons)
+
+
+def qualify_prospects(prospects: Iterable[Prospect]) -> list[QualificationResult]:
+    results: list[QualificationResult] = []
+
+    for index, prospect in enumerate(prospects):
+        if not isinstance(prospect, Prospect):
+            raise TypeError(
+                f"prospects element at index {index} must be a Prospect, "
+                f"got {type(prospect).__name__}"
+            )
+        results.append(qualify_prospect(prospect))
+
+    return results
